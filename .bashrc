@@ -9,12 +9,6 @@
 export EDITOR="/usr/bin/vim"
 export VISUAL="/usr/bin/vim"
 
-# Enable color support of ls and also add handy aliases
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
 # Setting umask
 umask 0022
 
@@ -70,4 +64,6 @@ PS1="${PS1}\[\033[0;34m\]\W "
 PS1="${PS1}\[\033[${color}m\]\\$\[\033[00m\] "
 
 # Window title
-PROMPT_COMMAND='echo -ne "\e]0;${title}\a"'
+if [ $TERM != "linux" ]; then
+    PROMPT_COMMAND='echo -ne "\033]0;${title}\007"'
+fi
