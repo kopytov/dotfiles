@@ -67,3 +67,11 @@ PS1="${PS1}\[\033[${color}m\]\\$\[\033[00m\] "
 if [ $TERM != "linux" ]; then
     PROMPT_COMMAND='echo -ne "\033]0;${title}\007"'
 fi
+
+# Git environment variables
+if [ $UID -ne 0 ]; then
+    export GIT_AUTHOR_NAME="Dmitry Kopytov"
+    export GIT_AUTHOR_EMAIL="kopytov@kopytov.ru"
+    export GIT_COMMITER_NAME="$GIT_AUTHOR_NAME"
+    export GIT_COMMITER_EMAIL="$GIT_AUTHOR_EMAIL"
+fi
