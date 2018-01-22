@@ -27,6 +27,8 @@ else
 fi
 
 # Owner & location
+[[ "$HOSTNAME" == *.* ]] || HOSTNAME=$( hostname -f )
+
 IFS="." read -ra domains <<< "$HOSTNAME"
 if [ ${#domains[@]} -gt 2 ]; then
     hostname=${domains[0]}
