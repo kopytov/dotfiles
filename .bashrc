@@ -77,3 +77,21 @@ if [ $UID -ne 0 ]; then
     export GIT_COMMITER_NAME="$GIT_AUTHOR_NAME"
     export GIT_COMMITER_EMAIL="$GIT_AUTHOR_EMAIL"
 fi
+
+# Start ssh-agent
+AGENT_ENV="$HOME/.ssh-agent.env"
+AGENT_LIFETIME=14400  # 4 hours
+
+function ssh_agent_running() {
+    test -n "$SSH_AUTH_SOCK" && test -S "$SSH_AUTH_SOCK"
+}
+
+function run_ssh_agent() {
+    ssh-agent -t "$AGENT_LIFETIME" > "$AGENT_ENV"
+    source "$AGENT_ENV"
+}
+
+if ! ssh_agent_running; then
+    [ -f "$AGENT_ENV" ] && source "$AGENT_ENV"
+    ssh_agent_running || run_ssh_agent
+fi
