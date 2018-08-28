@@ -89,6 +89,7 @@ function ssh_agent_running() {
 
 function run_ssh_agent() {
     ssh-agent -t "$AGENT_LIFETIME" > "$AGENT_ENV"
+    sed -i '/^echo/d' "$AGENT_ENV"
     source "$AGENT_ENV"
 }
 
