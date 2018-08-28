@@ -5,3 +5,5 @@ set expandtab
 set smarttab
 set smartindent
 set background=dark
+let g:solarized_termtrans=1
+colorscheme solarized
