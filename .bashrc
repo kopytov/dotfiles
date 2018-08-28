@@ -96,3 +96,7 @@ if ! ssh_agent_running; then
     [ -f "$AGENT_ENV" ] && source "$AGENT_ENV"
     ssh_agent_running || run_ssh_agent
 fi
+
+# Setup dircolors
+DIRCOLORS=$( type -P dircolors )
+[ -n "$DIRCOLORS" ] && eval $( "$DIRCOLORS" "$HOME/.dircolors" )
