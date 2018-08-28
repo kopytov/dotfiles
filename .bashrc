@@ -93,7 +93,7 @@ function run_ssh_agent() {
     source "$AGENT_ENV"
 }
 
-if ! ssh_agent_running; then
+if [ -n "$TERM" ] && ! ssh_agent_running; then
     [ -f "$AGENT_ENV" ] && source "$AGENT_ENV"
     ssh_agent_running || run_ssh_agent
 fi
