@@ -8,6 +8,7 @@
 # User specific aliases and functions
 export EDITOR="/usr/bin/vim"
 export VISUAL="/usr/bin/vim"
+[[ -f "$HOME/.bashrc.local" ]] && . "$HOME/.bashrc.local"
 
 # Setting umask
 umask 0022
