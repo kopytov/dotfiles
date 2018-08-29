@@ -60,6 +60,11 @@ else
     PS1="${PS1}\[\033[0;33m\]${hostname} "
 fi
 
+# Tmux prompt
+if [ -n "$TMUX" ] && [ "$TERM" == "screen" ]; then
+    PS1=""
+fi
+
 # Working directory
 PS1="${PS1}\[\033[0;34m\]\W "
 
